@@ -1,0 +1,38 @@
+{
+  "name": "vscode-extension",
+  "displayName": "vscode-extension",
+  "description": "vscode-extension",
+  "version": "0.0.1",
+  "publisher": "lsong",
+  "engines": {
+    "vscode": "^1.16.0"
+  },
+  "main": "./extension",
+  "scripts": {
+    "postinstall": "node ./node_modules/vscode/bin/install",
+    "test": "node ./node_modules/vscode/bin/test"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onLanguage:plaintext",
+    "onCommand:extension.sayHello"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "extension.sayHello",
+        "title": "Hello World"
+      }
+    ]
+  },
+  "devDependencies": {
+    "typescript": "^2.5.2",
+    "vscode": "^1.1.5",
+    "mocha": "^3.5.0",
+    "eslint": "^4.6.1",
+    "@types/node": "^7.0.0",
+    "@types/mocha": "^2.2.42"
+  }
+}
