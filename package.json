@@ -11,15 +11,108 @@
   "categories": [
     "Other"
   ],
-  "activationEvents": [],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
   "contributes": {
     "commands": [
       {
         "command": "extension.sayHello",
         "title": "Hello World"
+      },
+      {
+        "command": "chatgpt.explain",
+        "title": "ChatGPT: Explain selection"
+      },
+      {
+        "command": "chatgpt.refactor",
+        "title": "ChatGPT: Refactor selection"
+      },
+      {
+        "command": "chatgpt.findProblems",
+        "title": "ChatGPT: Find problems"
+      },
+      {
+        "command": "chatgpt.optimize",
+        "title": "ChatGPT: Optimize selection"
       }
-    ]
-  },
-  "devDependencies": {
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "command": "chatgpt.explain",
+          "when": "editorHasSelection",
+          "group": "chatgpt-menu-group@2"
+        },
+        {
+          "command": "chatgpt.refactor",
+          "when": "editorHasSelection",
+          "group": "chatgpt-menu-group@3"
+        },
+        {
+          "command": "chatgpt.findProblems",
+          "when": "editorHasSelection",
+          "group": "chatgpt-menu-group@4"
+        },
+        {
+          "command": "chatgpt.optimize",
+          "when": "editorHasSelection",
+          "group": "chatgpt-menu-group@5"
+        }
+      ],
+      "commandPalette": [
+        {
+          "command": "chatgpt.explain",
+          "when": "editorHasSelection"
+        },
+        {
+          "command": "chatgpt.refactor",
+          "when": "editorHasSelection"
+        },
+        {
+          "command": "chatgpt.findProblems",
+          "when": "editorHasSelection"
+        },
+        {
+          "command": "chatgpt.optimize",
+          "when": "editorHasSelection"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "ChatGPT",
+      "type": "object",
+      "properties": {
+        "chatgpt.sessionToken": {
+          "type": "string",
+          "description": "A session token you get when logged into chat.openai.com",
+          "order": 1
+        },
+        "chatgpt.promptPrefix.explain": {
+          "type": "string",
+          "default": "Explain what this code does: ",
+          "description": "The prompt prefix used for explaining the selected code",
+          "order": 3
+        },
+        "chatgpt.promptPrefix.refactor": {
+          "type": "string",
+          "default": "Refactor this code and explain what's changed: ",
+          "description": "The prompt prefix used for refactoring the selected code",
+          "order": 4
+        },
+        "chatgpt.promptPrefix.findProblems": {
+          "type": "string",
+          "default": "Find problems with the following code, fix them and explain what was wrong (Do not change anything else): ",
+          "description": "The prompt prefix used for finding problems in the selected code",
+          "order": 5
+        },
+        "chatgpt.promptPrefix.optimize": {
+          "type": "string",
+          "default": "Optimize the following code: ",
+          "description": "The prompt prefix used for optimizing the selected code",
+          "order": 6
+        }
+      }
+    }
   }
 }
