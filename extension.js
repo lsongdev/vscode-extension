@@ -4,7 +4,7 @@ const {
   StatusBarAlignment
 } = require('vscode');
 
-exports.activate = (context) => {
+const activate = context => {
   const { activeTextEditor, showInformationMessage, createStatusBarItem } = window;
   const statusBarItem = createStatusBarItem(StatusBarAlignment.Left);
   setInterval(() => {
@@ -12,7 +12,7 @@ exports.activate = (context) => {
     statusBarItem.show();
   }, 1000);
   const disposable = commands.registerCommand('extension.sayHello', () => {
-    if(activeTextEditor){
+    if (activeTextEditor) {
       const { document, selection } = activeTextEditor;
       const text = document.getText(selection);
       showInformationMessage(text);
@@ -20,4 +20,13 @@ exports.activate = (context) => {
     }
   });
   context.subscriptions.push(disposable);
+};
+
+const deactive = () => {
+  console.debug('deactive');
+};
+
+module.exports = {
+  activate,
+  deactive,
 };
