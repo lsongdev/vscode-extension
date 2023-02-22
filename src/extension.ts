@@ -23,7 +23,7 @@ const commandHandler = async (prefix: string) => {
     temperature: 0,
     max_tokens: 2048
   });
-  console.log(completion.choices[0].text);
+  console.log("ChatGPT:", completion.choices[0].text);
 };
 
 const commandHello = commands.registerCommand('extension.sayHello', () => {
